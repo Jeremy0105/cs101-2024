@@ -5,38 +5,53 @@ int main()
     char a[]= "-99acbc";
     int alen = sizeof(a)/sizeof(char);
     char b[alen];
-    for(int i=0;i<n;i++){
+    int k=0;
+    for(int i=0;i<alen;i++){
         switch(a[i]){
+            case '-':
+            b[k]=a[i];
+            k=k+1;
+            break;
             case '1':
-            
+            b[k]=a[i];
+            k=k+1;
             break;
             case '2':
-            k=k+2;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '3':
-            k=k+3;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '4':
-            k=k+4;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '5':
-            k=k+5;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '6':
-            k=k+6;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '7':
-            k=k+7;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '8':
-            k=k+8;
+            b[k]=a[i];
+            k=k+1;
             break;
             case '9':
-            k=k+9;
+            b[k]=a[i];
+            k=k+1;
             break;
             default:
             break;
         }
     }
+    printf("%s",b);
     return 0;
 }
