@@ -1,42 +1,36 @@
-TEST
 #include <stdio.h>
 #include <stdlib.h>
-int strcopy(char a[],char b[],int len){
-    for(int i=0;i<len;i++){
-            a[i] = b[i];
-        }
-        return 0;
+#include <string.h>
+#include <ctype.h>
+
+int cmp(const void *a, const void *b) {
+    return (*(char *)a) - (*(char *)b);
 }
 
-
-int main()
-{
-    char a[]= "-9 8 7 6 5 -4 3 -2 1";
-    int alen = sizeof(a)/sizeof(char)-1;
-    int n=4,g=0;
-    char b[alen];
-    
-    for(int i=0;i<alen-1;i++){
-        if(a[i]=='-'){
-            b[g]=a[i+1];
-            g=g+1;
-            i=i+2;
-        }
+char find_kth_largest_number(char* arr, int n, int k) {
+    // 將字元陣列轉換成整數陣列
+    int* intArr = (int*) malloc(sizeof(int) * n);
+    char* ptr = strtok(arr, " ");
+    int idx = 0;
+    while (ptr != NULL) {
+        intArr[idx++] = atoi(ptr);
+        ptr = strtok(NULL, " ");
     }
-    char c[g];
-    strcopy (c,b,g);
-    for(int i=0;i<g;i++){
-      for(int j=0;j<g-i;j++){
-         if(c[j]>c[j+1]){
-            printf("%d",1);
-      
-         }        
-      }
-   }
-   int integer = atoi(c);
-    printf("str to int: %d\n", integer);
-printf("\n%s%d",c,g);
-    
+
+    // 進行快速排序，找到第k大的數字
+    qsort(intArr, idx, sizeof(int), cmp);
+    char kth_largest_number = intArr[idx - k] + '0';
+    free(intArr);
+    return kth_largest_number;
+}
+
+int main() {
+    char a[] = "-9 8 7 6 5 -4 3 -2 1";
+    int n = strlen(a);
+    int k = 4;
+    char kth_largest_number = find_kth_largest_number(a, n, k);
+    printf("%c",kth_largest_number);
     
     return 0;
+    
 }
